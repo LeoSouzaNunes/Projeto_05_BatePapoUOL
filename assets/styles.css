@@ -63,6 +63,14 @@ li{
 
     border-radius: 2px;
 }
+span {
+    padding-top: 11px;
+    
+    width: 100%;
+    height: 40px;
+
+    border-radius: 2px;
+}
 .cinza{
     background-color: #DCDCDC;
 }
