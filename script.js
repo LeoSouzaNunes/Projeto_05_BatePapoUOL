@@ -5,24 +5,25 @@ let promise;
 function carregarPagina() {
 
 
-    let userName = { name: prompt("Por favor insira seu nome.") }
+    let userName = { name: prompt("Por favor insira seu nome.") };
 
     let promiseUserName = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", userName);
 
-    promiseUserName.then(nomeAceito)
-    promiseUserName.catch(nomeJaCadastrado)
+    promiseUserName.then(nomeAceito);
+    promiseUserName.catch(nomeJaCadastrado);
 
     function nomeJaCadastrado(fracasso) {
-        console.log(fracasso.response.statusText)
-        window.location.reload(true)
+        console.log(fracasso.response.statusText);
+        window.location.reload(true);
     }
     function nomeAceito() {
-
-
+        function userOnline() {
+            axios.post("https://mock-api.driven.com.br/api/v4/uol/status", userName);
+        }
         function carregarMensagens() {
-            promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages")
+            promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
 
-            promise.then(respostaMessages)
+            promise.then(respostaMessages);
         }
 
         function respostaMessages(resposta) {
@@ -44,7 +45,7 @@ function carregarPagina() {
             }
             blocoMensagens.lastElementChild.scrollIntoView()
         }
-
+        setInterval(userOnline, 5000)
         setInterval(carregarMensagens, 3000)
     }
 }
