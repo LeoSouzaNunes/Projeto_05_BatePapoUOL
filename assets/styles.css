@@ -2,6 +2,11 @@
     outline: none;
 }
 
+button{
+    background-color: #FFFFFF;
+    border-style: none;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     
@@ -10,9 +15,76 @@ body{
     position: relative;
 }
 
-time{
-    color: #AAAAAA;
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 15px;
+    
+    width: 100%;
+    height: 667px;
+    
+    z-index: 2;
+    
+    background-color: #FFFFFF;
 }
+.login img{
+    width: 100px;
+    height: 100px;
+}
+.login h1{
+    color:#000000;
+}
+
+.login .logo{
+    width: 130px;
+    height: 92px;
+    
+    margin-bottom: 80px;
+}
+
+.login input{
+    width: 261px;
+    height: 54px;
+    
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    
+    border: 1.5px solid #D7D7D7;
+    border-radius: 4px;
+}
+.login ::placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #AEAEAE;
+}
+
+.login button{
+    width: 109px;
+    height: 45px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #696969;
+
+    background-color: #E7E7E7;
+    border-radius: 9px;
+}
+
+.login button:hover{
+    cursor: pointer;
+}
+
 
 header{
     display: flex;
@@ -44,31 +116,35 @@ header ion-icon{
     display: flex;
     flex-direction: column;
     gap: 4px;
-
+    
     width: 100%;
     height: 667px;
     padding-top: 106px;
-    padding-bottom: 90px;
+    padding-bottom: 100px;
     overflow-y: auto;
-
+    
     background-color: #e5e5e5;
 }
 
 li{
     display: flex;
     align-items: center;
-
+    
     width: 100%;
     height: 40px;
-
+    
     border-radius: 2px;
 }
+time{
+    color: #AAAAAA;
+}
 span {
+    overflow-wrap: break-word;
     padding-top: 11px;
     
     width: 100%;
     height: 40px;
-
+    
     border-radius: 2px;
 }
 .cinza{
@@ -103,7 +179,11 @@ span {
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.footer ion-icon{
+.send-message:hover{
+    cursor: pointer;
+}
+
+.footer .send-message ion-icon{
     width: 26px;
     height: 26px;
 }
@@ -123,4 +203,7 @@ span {
     
     color: #000000;
     opacity: 1; /*Aplicar efeito no mozilla*/
+}
+.hidden{
+    display: none;
 }

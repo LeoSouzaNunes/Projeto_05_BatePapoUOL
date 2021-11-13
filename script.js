@@ -1,11 +1,34 @@
 let promise;
+let userName;
+let addHiddenButton;
+let addHiddenInput;
+let loginPage;
+let trazerPage;
 
+function telaLogin() {
+    let pegarNome = document.querySelector(".login input")
 
+    userName = { name: pegarNome.value }
+
+    loginPage = document.querySelector(".login")
+    addHiddenInput = document.querySelector(".login input");
+    addHiddenButton = document.querySelector(".login .enter");
+    let loadingOn = document.querySelector(".login .loading");
+    let loadingTextOn = document.querySelector(".login .text-loading")
+
+    trazerPage = document.querySelectorAll(".hidden")
+
+    addHiddenInput.classList.add("hidden")
+    addHiddenButton.classList.add("hidden")
+    loadingOn.classList.remove("hidden")
+    loadingTextOn.classList.remove("hidden")
+
+    carregarPagina()
+
+    pegarNome.value = ""
+}
 
 function carregarPagina() {
-
-
-    let userName = { name: prompt("Por favor insira seu nome.") };
 
     let promiseUserName = axios.post("https://mock-api.driven.com.br/api/v4/uol/participants", userName);
 
@@ -27,6 +50,13 @@ function carregarPagina() {
         }
 
         function respostaMessages(resposta) {
+
+            loginPage.classList.add("hidden")
+
+            for (let i = 2; i < trazerPage.length; i++) {
+
+                trazerPage[i].classList.remove("hidden")
+            }
             let messages = resposta.data;
             let blocoMensagens = document.querySelector(".messages")
             blocoMensagens.innerHTML = "";
@@ -49,7 +79,25 @@ function carregarPagina() {
         setInterval(carregarMensagens, 3000)
     }
 }
+function enviarMensagem() {
+    let conteudoMensagem = document.querySelector(".footer input")
+    console.log(conteudoMensagem.value);
+    let promiseMensagem = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", {
+        from: userName.name,
+        to: "Todos",
+        text: conteudoMensagem.value,
+        type: "message" // ou "private_message" para o bônus
+    })
+    promiseMensagem.then(mensagemEnviada);
+    promiseMensagem.catch(userOffline)
 
-carregarPagina()
+
+    function mensagemEnviada() {
+        conteudoMensagem.value = ""
+    }
+    function userOffline() {
+        window.location.reload(true)
+    }
+}
 
 
